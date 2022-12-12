@@ -8,16 +8,17 @@ import {
     REGISTER,
   } from 'redux-persist';
 import persistStore from "redux-persist/es/persistStore";
+import theme from "./theme";
 
 export const store = configureStore({
     reducer: {
-        
+      theme,
     },
     middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
+      getDefaultMiddleware({
+        serializableCheck: {
+          ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+        },
     }),
 });
 
