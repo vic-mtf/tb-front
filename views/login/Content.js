@@ -5,55 +5,61 @@ import { Link } from "../../components/react-router-app";
 import { content as styles } from "../../styles/loginView.styles";
 import globalStyle from '../../styles/app.style';
 
-export default function Content () {
-    const [step, setStep] = React.useState(0);
-    const email = React.useRef(null);
-    const password = React.useRef(null);
-
+export default function Content ({
+    handleStep,
+    handleCheckEmail,
+    handleLogin,
+    identifyRef, 
+    loading, 
+    step,
+}) {
+   
     const Step = steps[step];
-    const ref = [email, password][step];
 
     React.useEffect(() => {
-        console.log(email, password);
+        console.log(identifyRef);
     })
 
     return (
-        <View style={styles.container}>
-            <View style={styles.stepContainer}>
-                <Step
-                    ref={ref}
-                />
+        <React.Fragment>
+            <View style={styles.container}>
+                <View style={styles.stepContainer}>
+                    <Step
+                        identifyRef={identifyRef}
+                    />
+                </View>
+                <View
+                    style={styles.buttonContainer}
+                >
+                    <Button 
+                        style={styles.button}
+                        mode="outlined"
+                        onPress={() => handleStep('PREVIOUS')}
+                        disabled={!step}
+                    >Précédent</Button>
+                    <Button
+                        tyle={styles.button}
+                        mode="contained"
+                        onPress={() => handleStep()}
+                        disabled={loading}
+                    >Suivant</Button>
+                </View>
             </View>
-            <View
-                style={styles.buttonContainer}
-            >
-                <Button 
-                    style={styles.button}
-                    mode="outlined"
-                    onPress={() => null}
-                    disabled={!step}
-                >Précédent</Button>
-                <Button
-                    tyle={styles.button}
-                    mode="contained"
-                    onPress={() => null}
-                >Suivant</Button>
-            </View>
-        </View>
+        </React.Fragment>
     );
 }
 
-const EmailValidate = React.forwardRef((props, ref) => {
+const EmailValidate = ({identifyRef}) => {
     const [value, setValue] = React.useState('');
 
     React.useLayoutEffect(() => {
-        ref.current = value;
+        identifyRef.current.email = value;
     }, [value]);
 
     
 
     return ( 
-        <React.Fragment>
+        <View style={styles.emailContente}>
             <TextInput
                 label="Email"
                 placeholder="exemple@email.cd"
@@ -80,15 +86,15 @@ const EmailValidate = React.forwardRef((props, ref) => {
                     >Créez-en un!</Text>
                 </Link>
             </View>
-        </React.Fragment>
+        </View>
     );
-});
+};
 
-const PasswordValidate = React.forwardRef(() => {
+const PasswordValidate = () => {
 
     return (
         <Text> Password validate </Text>
     );
-});
+};
 
 const steps = [EmailValidate, PasswordValidate] ;

@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native"
+import { StyleSheet } from "react-native";
 
 const styles = {
     loginView: StyleSheet.create({
@@ -17,11 +17,11 @@ const styles = {
             justifyContent: 'center',
           },
     }),
-
     content: StyleSheet.create({
         container: {
             flex: 1,
-            width: '100%'
+            width: '100%',
+            position: 'relative',
         },
         stepContainer: {
             flex: 1,
@@ -34,6 +34,11 @@ const styles = {
         button: {
             marginLeft: 5,
             marginRight: 5,
+        },
+        emailContente: {
+            justifyContent: 'center',
+            //backgroundColor: 'red',
+            flex: 1,
         },
         emailcontainerView: {
             flexDirection: 'row',
@@ -53,6 +58,5 @@ const styles = {
         }
     }),
 };
-
 export const { loginView, content, header } = styles;
 export default styles;

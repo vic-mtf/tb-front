@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "tb-front",
-    "slug": "tb-front",
+    "name": "totanga book",
+    "slug": "TB",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
